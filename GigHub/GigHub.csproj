@@ -199,8 +199,18 @@
     <Compile Include="Migrations\201804290549522_InitialModel.Designer.cs">
       <DependentUpon>201804290549522_InitialModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201804301157571_CreateGenreAndGigTable.cs" />
+    <Compile Include="Migrations\201804301157571_CreateGenreAndGigTable.Designer.cs">
+      <DependentUpon>201804301157571_CreateGenreAndGigTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201805010401035_ApplyDataAnnotation.cs" />
+    <Compile Include="Migrations\201805010401035_ApplyDataAnnotation.Designer.cs">
+      <DependentUpon>201805010401035_ApplyDataAnnotation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Genre.cs" />
+    <Compile Include="Models\Gig.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -283,6 +293,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201804290549522_InitialModel.resx">
       <DependentUpon>201804290549522_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201804301157571_CreateGenreAndGigTable.resx">
+      <DependentUpon>201804301157571_CreateGenreAndGigTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805010401035_ApplyDataAnnotation.resx">
+      <DependentUpon>201805010401035_ApplyDataAnnotation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
