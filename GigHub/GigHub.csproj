@@ -207,6 +207,10 @@
     <Compile Include="Migrations\201805010401035_ApplyDataAnnotation.Designer.cs">
       <DependentUpon>201805010401035_ApplyDataAnnotation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201805010422508_PopulateToGenresTable.cs" />
+    <Compile Include="Migrations\201805010422508_PopulateToGenresTable.Designer.cs">
+      <DependentUpon>201805010422508_PopulateToGenresTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Genre.cs" />
@@ -299,6 +303,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201805010401035_ApplyDataAnnotation.resx">
       <DependentUpon>201805010401035_ApplyDataAnnotation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201805010422508_PopulateToGenresTable.resx">
+      <DependentUpon>201805010422508_PopulateToGenresTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
