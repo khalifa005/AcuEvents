@@ -1,0 +1,321 @@
+﻿@model GigHub.Core.ViewModel.DeanViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h1>Dean DashBoard</h1>
+
+
+
+
+<div class="row">
+
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div id="test" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"><div class="loader"><div class="loader__figure"></div></div></div>
+            </div>
+
+        </div>
+    </div>
+
+
+
+    
+
+
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+                <div id="column" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"><div class="loader"><div class="loader__figure"></div></div></div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+@section scripts
+{
+
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+
+    <script>
+
+
+
+        $(document).ready(function () {
+
+
+
+
+
+
+
+                $.ajax({
+                    url: '@Url.Action("getJson", "Dean")',
+                    type: 'Get',
+                    success: function (result) {
+                    //alert(result.length);
+                    drawPieChart(result);
+
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                    console.log(xhr.statusText);
+
+                    console.log(thrownError);
+
+                    }
+
+                    });
+
+
+                    $.ajax({
+                    url: '@Url.Action("getJsonforColumns", "Dean")',
+                    type: 'Get',
+                    success: function (result) {
+                    //alert(result.length);
+                    DrawChartForArtist(result);
+
+                    },
+                    error: function(xhr, ajaxOptions, thrownError) {
+                    console.log(xhr.statusText);
+
+                    console.log(thrownError);
+
+                    }
+
+                    });
+
+
+        });
+
+
+
+
+
+
+                    // draw high chart for total revenu per country (pie)
+
+                    function drawPieChart(data) {
+
+                    var result = []; // array for serise
+
+
+                    for (var i = 0; i < data.length; i++) {
+
+                    result.push({ "name": data[i].name, "y": data[i].count });
+
+                    }
+
+                    Highcharts.chart('test',
+                    {
+
+                    chart: {
+
+                    plotBackgroundColor: null,
+
+                    plotBorderWidth: null,
+
+                    plotShadow: false,
+
+                    type: 'pie'
+
+                    },
+
+                    credits: {
+
+                    enabled: false
+
+                    },
+
+                    title: {
+
+                    text: 'Total Event Per Family'
+
+                    },
+
+                    tooltip: {
+
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+
+                    },
+
+                    plotOptions: {
+
+                    pie: {
+
+                    allowPointSelect: true,
+
+                    cursor: 'pointer',
+
+                    dataLabels: {
+
+                    enabled: true,
+
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+
+                    style: {
+
+                    color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+
+                    }
+
+                    }
+
+                    }
+
+                    },
+
+                    series: [
+
+                    {
+
+                    type: 'pie',
+
+                    name: 'Total Event',
+
+                    data: result
+
+                    }
+
+                    ]
+
+                    });
+
+
+
+                    }
+
+
+
+                    function DrawChartForArtist(data) {
+                    var result = []; // array for serise
+                    for (var i = 0; i < data.length; i++) {
+
+                        result.push({ "name": data[i].name, "Y": data[i].list });
+
+                    }
+
+                    Highcharts.setOptions({
+                    });
+                    Highcharts.chart('column',
+                    {
+                    chart: {
+                    type: 'column'
+                    },
+                    credits: {
+                    enabled: false
+                    },
+                    title: {
+                    text: 'Event per category'
+                    },
+                    subtitle: {
+                    text: 'expalin how much event provide by family'
+                    },
+                    xAxis: {
+                    type: 'category',
+                    labels: {
+                    rotation: -45,
+                    style: {
+                    fontSize: '12px',
+                    fontFamily: 'Verdana, sans-serif'
+                    }
+                    }
+
+                    },
+
+
+
+                    //
+                    xAxis: {
+                        type: 'category',
+                        labels: {
+                            rotation: -45,
+                            style: {
+                                fontSize: '12px',
+                                fontFamily: 'Verdana, sans-serif'
+                            }
+                        }
+
+                    },
+
+                    xAxis: {
+                        type: 'category',
+                        labels: {
+                            rotation: -45,
+                            style: {
+                                fontSize: '12px',
+                                fontFamily: 'Verdana, sans-serif'
+                            }
+                        }
+
+                    },
+                    //
+                    yAxis: {
+                    min: 0,
+                    title: {
+                    text: 'Levels'
+                    }
+                    },
+                    legend: {
+                    enabled: true
+                    },
+                    tooltip: {
+                    pointFormat: 'percentage for this familt in a specific category: <b>{point.y} </b>'
+                    },
+                    plotOptions: {
+                    column: {
+                    stacking: 'normal',
+                    dataLabels: {
+                    enabled: false,
+                    color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white'
+                    }
+                    }
+                    },
+                    series: [
+                        {
+                            name:"Category",
+                    data: result
+                    ,
+                    dataLabels: {
+                        enabled: true,
+                        rotation: -90,
+                        color: '#FFFFFF',
+                        align: 'right',
+                        format: '{point.y:.1f}', // one decimal
+                        y: 10, // 10 pixels down from the top
+                        style: {
+                            fontSize: '13px',
+                            fontFamily: 'Verdana, sans-serif'
+                        }
+                    }
+                    }
+                    ]
+                    });
+                    }
+
+
+
+
+
+                   
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+    }

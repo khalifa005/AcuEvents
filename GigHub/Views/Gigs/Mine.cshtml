@@ -1,0 +1,111 @@
+﻿@model IEnumerable<GigHub.Core.Models.Gig>
+@{
+    ViewBag.Title = "Mine";
+}
+
+<h2>Mine Upcoming Events</h2>
+
+<ul class="gigs">
+    @foreach (var gig in Model)
+    {
+        <li>
+            <div class="date">
+                <div class="month">
+                    @gig.DateTime.ToString("MMM")
+                </div>
+                <div class="day">
+                    @gig.DateTime.ToString("d ")
+                </div>
+            </div>
+            <div class="deatils">
+                <span class="FanilyName">
+                    @gig.Venue
+                </span>
+                <span class="genre">
+                    @gig.Genre.Name
+
+                </span>
+                <span class="dayy">@gig.DateTime.ToString("t")</span>
+                
+                <div class="actions">
+                    <a href="@Url.Action("Edit","Gigs",new {id=gig.Id})">Edit</a>
+                    <a href="#" class="js-cancel-gig" data-gig-id="@gig.Id">Cancel</a>
+                </div>
+            </div>
+
+        </li>
+    }
+</ul>
+
+@section scripts{
+    
+    <script>
+        $(document).ready(function () {
+
+            //e represent the source of the click event
+            $(".js-cancel-gig").click(function (e) {
+
+                //this will return cancel link--from the linl we will get the id passed to this link
+                var link = $(e.target);
+                //replace with bootBox Plugin
+
+                var dialog = bootbox.dialog({
+                    title: 'You Are About To Remove Your Event',
+                    message: "<p>Are You Sure You Want Cancel This Event!</p>",
+                    buttons: {
+                        cancel: {
+                            label: "No",
+                            className: 'btn-default',
+                            callback: function () {
+                               bootbox.hideAll();
+                            }
+                        },
+                        yes: {
+                            label: "Yes",
+                            className: 'btn-danger',
+                            callback: function () {
+                                $.ajax({
+
+                                    url: "/Api/Gigs/" + link.attr("data-gig-id"),
+                                    method: "DELETE"
+                                    
+
+
+                                })
+                                    //end of ajax
+                                    //propmise :handel done and fail scenarios after ajax call
+                                    .done(function () {
+                                        //if every thing work ok we need to remove it from our vieew so we call parent method
+                                        link.parents("li").fadeOut(function () {
+
+                                            //this here will be as the same as link.parent("li")
+                                            $(this).remove();
+
+                                        });
+                                    })
+
+
+                                    .fail(function () {
+                                        alert("something went wrong");
+
+                                    });
+
+                                
+                                return false;
+                            }
+                        }
+                        
+                    }
+                });
+
+                
+            });
+
+        });
+
+    </script>
+    
+    
+    
+    
+    }

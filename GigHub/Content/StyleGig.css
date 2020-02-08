@@ -1,0 +1,180 @@
+﻿.btn {
+    /* padding: 8px 20px; */
+    /* font-size: 18px; */
+    border-radius: 9px;
+}
+
+.Hoffset{margin-left: 40px;}
+.Voffset{margin-top:2px}
+.Voffset1{margin-top:5px}
+.Voffset2{margin-top:10px}
+.Voffset3{margin-top:20px}
+.Voffset4{margin-top:30px}
+.Voffset5{margin-top:80px}
+
+
+.gigs > li {
+    position: relative;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+#SearchTerm {
+    width: 300px;
+}
+
+.gigs > li .actions {
+    font-size: 10px;
+    display: none;
+}
+
+
+
+
+    .gigs > li:hover .actions {
+        display: block;
+    }
+
+    .gigs > li .deatils {
+        position: absolute;
+        top: 0;
+        left: 70px;
+    }
+        .gigs > li .deatils .FanilyName {
+            font-weight: bold;
+            display: block;
+            
+        }
+.gigs > li .deatils .genre {
+    display: block;
+}
+
+.gigs > li .deatils .dayy {
+    font-size: 13px;
+}
+
+.gigs {
+    margin-top: 0;
+    list-style: none;
+    margin-bottom: 30px;
+}
+
+.gigs > li .date {
+    background: #ff4342;
+    color: #ffffff;
+    text-align: center;
+    width: 60px;
+    border-radius: 9px;
+}
+
+
+.gigs > li .month {
+    text-transform: uppercase;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 2px 6px;
+}
+.gigs > li .day {
+    background: #f7f7f7;
+    color: #333;
+    font-size: 20px;
+    padding: 6px 12px;
+}
+
+.gigs > li .hour {
+    background: #ffffff;
+    color: #333333;
+    padding: 6px 12px;
+}
+.navbar-inverse {
+    background-color: #ff4342;
+    border-color: #ff4342;
+}
+
+    .navbar-inverse .Notification {
+        position: relative;
+    }
+
+    
+     
+.navbar-inverse .Notification .badge {
+    position: absolute;
+    top: 8px;
+    right: -1px;
+    background: #a80a0a;
+}
+
+    .navbar-inverse .navbar-nav > li > a {
+        color: #fff;
+    }
+
+    .navbar-inverse .navbar-brand {
+        color: #fff;
+        font-weight: 900;
+    }
+
+
+    .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+        background-color: #ee2928ad;
+    }
+
+    .popover {
+        box-shadow: none;
+        -webkit-box-shadow: none;
+    }
+ul.notifications {
+    list-style: none;
+    padding-left: 0;
+}
+    /*>li will affect thead li under ul (1)*/
+    ul.notifications >li {
+        border-bottom: 1px solid #ddd;
+        /*1-num isindex vertical padding and 2 isindex horizonal*/
+        padding: 10px;
+    }
+/*>only last li will affect  (1)*/
+        ul.notifications > li:last-child {
+            border-bottom: none;
+        }
+
+.popover-notifications ul.notifications .highlight {
+    font-weight: bold;
+}
+
+.popover-notifications .popover-content { padding: 0; }
+
+    .dropdown-menu {
+        box-shadow: none;
+        -webkit-box-shadow: none;
+    }
+
+.navbar-inverse .navbar-nav > .dropdown > a .caret {
+    border-top-color: #fff;
+    border-bottom-color: #fff;
+}
+
+.form-group {
+    margin-bottom: 17px;
+}
+
+body {
+    font-size: 18px;
+}
+.form-control {
+    /* padding: 20px 15px; */
+    font-size: 18px;
+    border-radius: 9px;
+    height: 44px;
+}
+.form-control:focus{
+    border-color:#2196f3;
+    box-shadow:none;
+}
+
+
+span.field-validation-error{
+
+    color:red;
+    font-weight:bold;
+}
+

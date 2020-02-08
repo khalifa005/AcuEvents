@@ -1,0 +1,92 @@
+﻿@model GigHub.Core.ViewModel.HomeViewModel
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="Hoffset"><h2>@Model.Heading</h2></div>
+@using (Html.BeginForm("Search", "Gigs"))
+{
+    <div class="form-group">
+        <div  id="SearchTerm" class="input-group">
+            @Html.TextBoxFor(c=>c.SearchTerm,new{@class="form-control"})
+            <span class="input-group-addon">
+                <i class="glyphicon glyphicon-search "></i>
+            </span>
+        </div>
+    </div>
+        
+}
+  <ul id="gigsC" class="gigs Voffset4" >
+    @foreach (var gig in Model.UpcomingGig)
+    {
+        <li>
+            <div class="date">
+                <div class="month">
+                    @gig.DateTime.ToString("MMM")
+                </div>
+                <div class="day">
+                    @gig.DateTime.ToString("d ")
+                </div>
+            </div>
+            <div class="deatils">
+                
+                <span class="FanilyName">
+                    
+                    <a href="@Url.Action("Deatils","Gigs",new {id=gig.Id})">@gig.Artist.Name</a>
+
+                    @if (gig.IsCanceled)
+                    {
+                        <span class="label label-warning">Canceled</span>
+                    }
+                    @if (Model.ShowAction)
+                    {
+                        <button class="btn btn-link btn-sm js-toggle-follow" data-user-id="@gig.ArtistId">Follow</button>
+                    }
+
+                </span>
+                
+                <span class="genre">
+                    @gig.Genre.Name
+                    @if (Model.ShowAction && !gig.IsCanceled)
+                    {//to kepp track which event user will going and change the lable of going butoon
+                     //  @*if any going gig id found change the labele else keep it as it is*@
+                        <button data-gig-id="@gig.Id" class="btn
+                             
+                                @(Model.attendences.Contains(gig.Id) ? "btn-info" : "btn-default") 
+                                btn-sm pull-right js-toggle-attendance">
+                            @(Model.attendences.Contains(gig.Id)? "Going": "Going?")
+
+                        </button>
+                    }
+                    
+
+                    
+
+                </span>
+                <span class="dayy">@gig.DateTime.ToString("t")</span>
+            </div>
+
+        </li>
+    }
+</ul>
+
+    @section scripts
+{
+
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+        <script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+
+        <script>
+            $(document).ready(function () {
+                //call js file that resposipole to attende event
+                GigsController.init("#gigsC");
+                
+        });
+            
+
+        </script>
+    }   
